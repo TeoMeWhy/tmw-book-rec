@@ -1,16 +1,21 @@
 import streamlit as st
-import time
+import os
 from rec_book_client import BookClient, Book
 from functions import cadastro, lista_simples, THEMES, GENRES, update_book_prices
 from amazon_client import AmazonClient
 
-import pandas as pd
+import dotenv
+dotenv.load_dotenv()
+
+SERVER_URI = os.getenv("SERVER_URI")
+SERVER_PORT = os.getenv("SERVER_PORT")
+
 
 st.set_page_config(page_title="Recomendação de Livros", page_icon=":books:", layout="wide")
 
 st.markdown("# Recomendação de Livros")
 
-book_client = BookClient(base_url="http://localhost:3030")
+book_client = BookClient(base_url=f"http://{SERVER_URI}:{SERVER_PORT}")
 amazon_client = AmazonClient()
 
 cadastro_tab, listas_simples_tab = st.tabs(["Cadastro de Livros", "Listas Simples"])

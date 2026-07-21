@@ -92,7 +92,15 @@ def cadastro(book_client):
         if save_button:
             
             if book.id is None:
-                new_book = Book(id=None,title=title,author=author,description=description,genre=genre,theme=theme,link=link, price=price, price_with_discount=price_with_discount)
+                new_book = Book(id=None,
+                                title=title,
+                                author=author,
+                                description=description,
+                                genre=genre,
+                                theme=theme,
+                                link=link,
+                                price=price,
+                                price_with_discount=price_with_discount)
                 res=book_client.create_book(new_book)
                 
                 if "error" in res:

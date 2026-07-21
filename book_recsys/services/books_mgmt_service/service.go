@@ -9,8 +9,10 @@ type BookService struct {
 	repoRelDB *reldb.DBClient
 }
 
-func (s *BookService) RegisterBook(title, author, description, genre, theme, link string) error {
+func (s *BookService) RegisterBook(title, author, description, genre, theme, link string, price, priceWithDiscount float64) error {
 	book := models.NewBook(title, author, description, genre, theme, link)
+	book.Price = price
+	book.PriceWithDiscount = priceWithDiscount
 	return s.repoRelDB.InsertBook(book)
 }
 

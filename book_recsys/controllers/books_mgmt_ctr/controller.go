@@ -23,7 +23,7 @@ func (c *BookMgmtController) RegisterBook(ctx fiber.Ctx) error {
 		})
 	}
 
-	if err := c.service.RegisterBook(book.Title, book.Author, book.Description, book.Genre, book.Theme, book.Link); err != nil {
+	if err := c.service.RegisterBook(book.Title, book.Author, book.Description, book.Genre, book.Theme, book.Link, book.Price, book.PriceWithDiscount); err != nil {
 		return ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": "Falha ao registrar o livro",
 		})
