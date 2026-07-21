@@ -1,0 +1,28 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    env_file:
+      - .env
+
+  book_mgmt_api:
+    build:
+      context: ./book_recsys
+      dockerfile: Dockerfile
+    ports:
+      - "3030:3030"
+    env_file:
+      - .env
+    restart: always
+
+volumes:
+  mysql_data:
