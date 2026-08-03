@@ -24,5 +24,15 @@ services:
       - .env
     restart: always
 
+  book_mgmt_app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - "8503:8501"
+    env_file:
+      - .env
+    restart: always
+
 volumes:
   mysql_data:

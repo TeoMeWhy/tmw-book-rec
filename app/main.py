@@ -18,6 +18,11 @@ st.markdown("# Recomendação de Livros")
 book_client = BookClient(base_url=f"http://{SERVER_URI}:{SERVER_PORT}")
 amazon_client = AmazonClient()
 
+@st.fragment(run_every='6h')
+def update_all_books():
+    update_book_prices(book_client, amazon_client)
+
+
 cadastro_tab, listas_simples_tab = st.tabs(["Cadastro de Livros", "Listas Simples"])
 
 with cadastro_tab:

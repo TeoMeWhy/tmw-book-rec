@@ -184,7 +184,7 @@ def lista_simples(book_client):
 
 # %%
 
-def get_book_price(book: Book, amazon_client):
+def get_book_info(book: Book, amazon_client):
     
     sort_by = [
         None,
@@ -213,8 +213,13 @@ def get_book_price(book: Book, amazon_client):
             price_with_discount = price.get('money', {}).get('amount') if price else None
             full_price = price.get('savingBasis', {}).get('money', {}).get('amount', price_with_discount) if price else None
             
+            if price_with_discount is None or full_price is None:
+                continue
+            
             book.price_with_discount = price_with_discount
             book.price = full_price
+            book.link = item.get("detailPageURL", book.link) 
+            
             return book
 
         except IndexError as e:
@@ -231,7 +236,7 @@ def update_book_prices(book_client, amazon_client):
     total_books = len(books)
     
     for i, book in enumerate(books):
-        updated_book = get_book_price(book=book, amazon_client=amazon_client)
+        updated_book = get_book_info(book=book, amazon_client=amazon_client)
         
         if updated_book:
             res = book_client.update_book(updated_book)

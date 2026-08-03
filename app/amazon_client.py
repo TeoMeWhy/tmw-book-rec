@@ -7,7 +7,7 @@ from creatorsapi_python_sdk.api.default_api import DefaultApi
 from creatorsapi_python_sdk.models.search_items_request_content import SearchItemsRequestContent
 from creatorsapi_python_sdk.exceptions import ApiException
 
-from rec_book_client import Book
+from rec_book_client import Book, BookClient
 
 import dotenv
 dotenv.load_dotenv()  # Carrega as variáveis de ambiente do arquivo .env
@@ -77,13 +77,5 @@ class AmazonClient:
             print('Unexpected error:', exception)
             return {"error": str(exception)}
 
-
 # %%
-
-# AvgCustomerReviews
-# Featured
-# NewestArrivals
-# Price:HighToLow
-# Price:LowToHigh
-# Relevance
 
