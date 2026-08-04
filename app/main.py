@@ -23,6 +23,8 @@ def update_all_books():
     update_book_prices(book_client, amazon_client)
 
 
+update_all_books()
+
 cadastro_tab, listas_simples_tab = st.tabs(["Cadastro de Livros", "Listas Simples"])
 
 with cadastro_tab:
