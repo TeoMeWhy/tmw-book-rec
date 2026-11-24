@@ -18,7 +18,7 @@ st.markdown("# Recomendação de Livros")
 book_client = BookClient(base_url=f"http://{SERVER_URI}:{SERVER_PORT}")
 amazon_client = AmazonClient()
 
-@st.fragment(run_every='6h')
+@st.cache_resource(ttl=6000)
 def update_all_books():
     update_book_prices(book_client, amazon_client)
 
